@@ -12,9 +12,23 @@ TEXT    [a-zA-Z_]
 "//"[^\n]*                  { /* single line comments */ }
 
 "namespace"                 { return(NAMESPACE); }
+"struct"                    { return(STRUCT); }
+"class"                     { return(CLASS); }
+"enum"                      { return(ENUM); }
+"use"                       { return(USE); }
 {TEXT}({TEXT}|{NUMBER})*    { return(IDENTIFIER); }
+\"(\\.|[^\\"\n])*\"         { return(STRING_LITERAL); }
+{NUMBER}*                   { return(INT_LITERAL); }
 
+"="                         { return('='); }
+"["                         { return('['); }
+"]"                         { return(']'); }
+"{"                         { return('{'); }
+"}"                         { return('}'); }
+"("                         { return('('); }
+")"                         { return(')'); }
 ";"                         { return(';'); }
+","                         { return(','); }
 
 [ \t\v\n\f]                 {}
 .                           { unexpected_token(); }

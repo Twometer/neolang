@@ -27,26 +27,26 @@ struct PrivateStruct {
     int a;
     int b;
     int c;
-};
+}
 
 class TestClass {
 
     int test;
 
-    ::create() {
+    create() {
 
     }
 
-    ::destroy() {
+    destroy() {
 
     }
 
     int testMethod(int a, int b) {
-        if (a < b) { return -44; }
-        for (int i = 0; i < b; i++) {
-            printf("krebskopf");
-        }
-        return 5;
+        //if (a < b) { return -44; }
+        //for (int i = 0; i < b; i++) {
+        //    printf("krebskopf");
+        //}
+        //return 5;
     }
 
 }
