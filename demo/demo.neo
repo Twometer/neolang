@@ -1,6 +1,6 @@
 namespace Demo;
 
-use "stdio.h"
+use "stdio.h";
 
 enum TestEnum {
     TypeA,
