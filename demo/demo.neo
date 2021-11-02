@@ -2,19 +2,19 @@ namespace Demo;
 
 use "stdio.h";
 
-enum TestEnum {
+api enum TestEnum {
     TypeA,
     TypeB = 32,
     TypeC,
 }
 
 [Packed]
-struct PackedStruct {
+api struct PackedStruct {
     uint a;
     uint b;
 }
 
-struct TestStruct {
+api struct TestStruct {
     int val1;
     short val2;
     byte val3;
@@ -22,14 +22,17 @@ struct TestStruct {
 
 // Single line comments
 
-[Private]
 struct PrivateStruct {
     int a;
     int b;
     int c;
 }
 
-class TestClass {
+/*
+ * multiline comments
+ */
+
+api class TestClass {
 
     int test;
 
@@ -41,12 +44,21 @@ class TestClass {
 
     }
 
-    int testMethod(int a, int b) {
-        //if (a < b) { return -44; }
-        //for (int i = 0; i < b; i++) {
-        //    printf("krebskopf");
-        //}
-        //return 5;
+    api int testMethod(int a, int b) {
+        if a < b {
+            return -44;
+        } else if a == b {
+            printf("a == b");
+        } else {
+            printf("alternative boi");
+        }
+        for i := 0; i < b; i++ {
+            printf("krebskopf");
+        }
+        while a > 0 {
+            a--;
+        }
+        return 5;
     }
 
 }

@@ -1,2 +1,2 @@
 #!/bin/bash
-cat demo/demo.neo | ./gen/neoparser
+cat demo/demo.neo | ./gen/neoparser --debug

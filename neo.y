@@ -1,5 +1,6 @@
 %token NAMESPACE USE ENUM STRUCT CLASS
 %token IDENTIFIER STRING_LITERAL INT_LITERAL
+%token IF ELSE WHILE DO FOR RETURN API
 
 %start entry_point
 %%
@@ -26,21 +27,28 @@ use_statement
     : USE STRING_LITERAL ';'
     ;
 
-
 constant_expression
     : INT_LITERAL
     ;
 
-declaration
+conditional_expression
+    : 
+    ;
+
+field_declaration
     : IDENTIFIER IDENTIFIER ';'
     ;
 
+modifier
+    : API
+    ;
 
 attribute
     : '[' IDENTIFIER ']'
 
 enum_block
     : attribute enum_block
+    | modifier enum_block
     | ENUM IDENTIFIER '{' enum_list '}'
     ;
 
@@ -58,35 +66,38 @@ enum_entry
 
 struct_block
     : attribute struct_block
+    | modifier struct_block
     | STRUCT IDENTIFIER '{' struct_body '}'
     ;
 
 struct_body
-    : declaration
-    | declaration struct_body
+    : field_declaration
+    | field_declaration struct_body
     ;
 
 
 class_block
     : attribute class_block
+    | modifier class_block
     | CLASS IDENTIFIER '{' class_body '}'
     ;
 
 class_body
-    : declaration
-    | declaration class_body
+    : field_declaration
+    | field_declaration class_body
     | method_block
     | method_block class_body
     ;
 
 
 method_block
-    : IDENTIFIER '(' argument_list ')' '{' method_body '}' 
+    : modifier method_block
+    | IDENTIFIER '(' argument_list ')' '{' method_body '}' 
     | IDENTIFIER IDENTIFIER '(' argument_list ')' '{' method_body '}' 
     ;
 
 method_body
-    :
+    : if_block
     ;
 
 argument_list
@@ -99,6 +110,9 @@ argument
     : IDENTIFIER IDENTIFIER
     | IDENTIFIER IDENTIFIER '=' constant_expression
     ;
+
+
+
 
 %%
 
